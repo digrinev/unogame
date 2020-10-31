@@ -1,13 +1,122 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html {
+  overflow: hidden;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin-top: 2rem;
+  background: url(uno.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: 'Roboto', 'sans-serif';
+  
+}
+body:before {
+  content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-image: linear-gradient(to bottom right,#000000,#000000);
+      opacity: .8; 
+}
+
+#container {
+  display: flex;
+  justify-content: center;
+}
+
+.player {
+  background-color: aliceblue;
+  margin: 0rem;
+  padding: 1rem;
+}
+
+.reverse-body-ccw {
+  margin: auto;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background-image: url(reverse_card_ccw.gif);
+  background-position: center;
+  background-size: cover;
+  width: 300px;
+  height: 300px;
+  z-index: 999;
+}
+
+.reverse-body-cw {
+  margin: auto;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background-image: url(reverse_card.gif);
+  background-position: center;
+  background-size: cover;
+  width: 300px;
+  height: 300px;
+  z-index: 999;
+}
+
+
+.player_card {
+  width: 25vw;
+  height: 20vh;
+  position: relative;
+  background-color: bisque;
+  opacity: 1;
+  border-radius: 20px;
+  box-shadow:
+  inset 60px 0 120px #f0f,  /* left magenta */
+  inset -60px 0 120px #0ff; /* right cyan */
+}
+
+.player_card_avatar {
+  position: relative;
+  width: 10vw;
+  height: 10vw;
+  float: left;
+  background-color: blue;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.player_name {
+  font-size: 5vh;
+  font-family: 'Roboto';
+  font-weight: 700;
+  text-align: center;
+  line-height: 5vh;
+  color: #f0f;
+
+}
+
+.bottom_player {
+  position: absolute;
+  margin: 0 auto;
+  bottom: 0;
+  width: 100%;
+  
+}
+
+.start_button {
+  position: absolute; 
+  left: 0;
+  bottom: 20vh;
+  width: 100%;
+  height: 80px;
+}
+
+.choose_players {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.player_score {
+  width: 10vw;
+  right: 3vw;
+  position: absolute;
+  font-size: 1.5em;
+  color: green;
+  padding: 0;
+
 }
