@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
 import ReverseState from './components/reverse';
 import ChoosePlayer from './components/choose_player'
+import configData from './config.json'
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
@@ -16,36 +16,7 @@ class App extends Component {
     this.startGame = this.startGame.bind(this)
 
     this.state = {
-       players: [
-        {
-          id: 0,
-          name: 'Аня',
-          avatar: 'anya',
-          key: Math.random(),
-          ingame: false,
-        },
-        {
-          id: 1,
-          name: 'Маша',
-          avatar: 'masha',
-          key: Math.random(),
-          ingame: false,
-        },
-        {
-          id: 2,
-          name: 'Папа',
-          avatar: 'papa',
-          key: Math.random(),
-          ingame: false,
-        },
-        {
-          id: 3,
-          name: 'Мама',
-          avatar: 'mama',
-          key: Math.random(),
-          ingame: false,
-        },
-      ],
+      players: configData.players,
       chosen_count: 0,
       game_started: 0,
     }
@@ -59,9 +30,9 @@ class App extends Component {
     let newPlayers = [...this.state.players]
     newPlayers[elementsIndex] = {...newPlayers[elementsIndex], ingame: !newPlayers[elementsIndex].ingame}
 
-    let count_chosen = [].concat(...newPlayers) /* flatten the array */
-                              .filter(item => item.ingame) /* return only enabled: true */
-                              .length /* get the count */
+    let count_chosen = [].concat(...newPlayers) 
+                              .filter(item => item.ingame) 
+                              .length
 
     this.setState((prevState) => {
        return { 
@@ -72,8 +43,8 @@ class App extends Component {
   }
 
   startGame(){
-      let count_chosen = [].concat(...this.state.players) /* flatten the array */
-      .filter(item => item.ingame) /* return only enabled: true */
+      let count_chosen = [].concat(...this.state.players) 
+      .filter(item => item.ingame)
 
       this.setState((prevState) => {
         return { 
@@ -84,17 +55,16 @@ class App extends Component {
   }
   
   render() {
-      const style = { marginTop: "15rem" };
-    
+ 
       const listPlayers = this.state.players.map((player, index) =>
-              <div className="col mb-5" key={player.key}>
-                <ChoosePlayer gamestatus={this.state.game_started} ingame={player.ingame} setPlayer={this.addPlayer} id={player.id} key={player.key} name={player.name} avatar={player.avatar}/>
+              <div className="col mb-5" key={player.id}>
+                <ChoosePlayer gamestatus={this.state.game_started} ingame={player.ingame} setPlayer={this.addPlayer} id={player.id} key={player.id} name={player.name} avatar={player.avatar}/>
               </div>      
       );
 
-      const chosenPlayersList = this.state.players.map(player => 
-           player.ingame && (<li className="list-group-item">{player.name}</li>)
-      );
+      // const chosenPlayersList = this.state.players.map(player => 
+      //      player.ingame && (<li className="list-group-item">{player.name}</li>)
+      // );
 
       return (
           <div className="App">
@@ -121,17 +91,21 @@ class App extends Component {
                   <div className="alert alert-warning choose_players">Выберите игроков для начала игры</div>
                 </div>
               </div>
+              
+            {/* Кнопка старт игры */}
+            <div className="row">
+              <div className="col text-center">
+                <div className="start_button" hidden={this.state.chosen_count < 2 || this.state.game_started}>
+                  <button className='btn btn-primary btn-lg' onClick={this.startGame}>НАЧАТЬ ИГРУ</button>
+                </div>
+              </div>
+            </div>
 
               <div className="row mt-5">
                 <div className="col">
                   {this.state.game_started && <ReverseState />}
                 </div>
               </div>
-            </div>
-
-            {/* Кнопка старт игры */}
-            <div className="start_button" hidden={this.state.chosen_count < 2 || this.state.game_started}>
-              <button className='btn btn-primary btn-lg' onClick={this.startGame}>НАЧАТЬ ИГРУ</button>
             </div>
           </div>
     

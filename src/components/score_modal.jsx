@@ -3,8 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from 'react-bootstrap/Button'
 import FormControl from 'react-bootstrap/FormControl'
 import InputGroup from 'react-bootstrap/InputGroup'
-import { withSwalInstance } from 'sweetalert2-react';
-import swal from 'sweetalert2';
+
 
 const ScoreModal = (props) => {
   const [show, setShow] = useState(false);
